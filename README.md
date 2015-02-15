@@ -5,7 +5,7 @@ Kurzbesch.: Der Spieler spricht den Stallburschen an und soll eien Ladung Heu zu
 Ablauf:     Qusetannahme beim Stallburschen -> heu erhalten -> Heu beim  Pferdeknecht abgegeben = Quest erledigt 
 
 
-Belohnung: 5 goldene karotten
+Belohnung: 5 goldene Karotten
          
 
 
