@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quest locked="false" ordered="false" required="0">
+  <name>Heu Lieferung</name>
+  <desc>Bringe das Heu zum Pferdeknecht</desc>
+  <triggers>
+    <trigger type="host.interact">
+      <host>world.bravaria.kia.heu_lieferung.stallbursche</host>
+      <actions>
+        <action type="rcconversations.conversation.start">
+          <host>world.bravaria.kia.heu_lieferung.stallbursche</host>
+          <conv>world.bravaria.kia.heu_lieferung.start-quest</conv>
+        </action>
+      </actions>
+    </trigger>
+    <trigger type="rcconversations.conversation.stage">
+      <conv>world.bravaria.kia.heu_lieferung.start-quest</conv>
+      <stage>accept</stage>
+      <actions>
+        <action type="quest.start">
+          <quest>world.bravaria.kia.heu_lieferung.start</quest>
+        </action>
+      </actions>
+    </trigger>
+  </triggers>
+  <objectives>
+    <object id="0">
+      <name>Bringe das Heu zum Pferdeknecht</name>
+      <triggers>
+        <trigger type=" host.interact">
+          <host>world.bravaria.kia.heu_lieferung.1-heu-lieferung.pferdeknecht</host>
+          <action type="rcconversations.conversation.start">
+            <host>world.bravaria.kia.heu_lieferung.1-heu-lieferung.pferdeknecht</host>
+            <conv>world.bravaria.kia.heu_lieferung.1-heu-lieferung.complete-quest</conv>
+          </action>
+          <action type="cconversations.conversation.stage">
+            <conv>world.bravaria.kia.heu_lieferung.1-heu-lieferung.complete-quest</conv>
+            <stage>finished</stage>
+          </action>
+        </trigger>
+      </triggers>
+      <requirements>
+        <requirement type="rcconversations.conversation.stage">
+          <conv>world.bravaria.kia.heu_lieferung.1-heu-lieferung.complete-quest</conv>
+          <stage>finished</stage>
+        </requirement>
+      </requirements>
+    </object>
+  </objectives>
+  <completeactions>
+    <action type="rcskills.hero.addxp">
+      <exp>250</exp>
+    </action>
+    <action type="player.give.money">
+      <amount>1s50k</amount>
+    </action>
+    <action type="rcconversations.conversation.start">
+      <host>world.bravaria.kia.heu_lieferung.stallbursche</host>
+      <conv>world.bravaria.kia.heu_lieferung.end-quest </conv>
+    </action>
+    <action type="rcconversations.conversation.start">
+      <host>world.bravaria.kia.heu_lieferung.1-heu-lieferung.pferdeknecht</host>
+      <conv>world.bravaria.kia.heu_lieferung.1-heu-lieferung.pferdeknecht.end-quest</conv>
+    </action>
+  </completeactions>
+</quest>

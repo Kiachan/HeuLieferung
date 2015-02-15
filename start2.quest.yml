@@ -1,0 +1,71 @@
+name: Heu Lieferung
+desc: Bringe das Heu zum Pferdeknecht
+locked: false
+author: Kiachan
+ordered: false
+required: 0
+trigger:
+  '0':
+    type: host.interact
+    args:
+      host: world.bravaria.kia.heu_lieferung.stallbursche
+    actions:
+      '0':
+        type: rcconversations.conversation.start
+        args:
+          host: world.bravaria.kia.heu_lieferung.stallbursche
+          conv: world.bravaria.kia.heu_lieferung.start-quest
+  '1':
+    type: rcconversations.conversation.stage
+    args:
+      conv: world.bravaria.kia.heu_lieferung.start-quest
+      stage: accept
+    actions:
+      '0':
+        type: quest.start
+        args:
+          quest: world.bravaria.kia.heu_lieferung.start
+objectives:
+  '0':
+    name: Bringe das Heu zum Pferdeknecht
+    trigger:
+      '0':
+        type: host.interact
+        args:
+          host: world.bravaria.kia.heu_lieferung.1-heu-lieferung.pferdeknecht
+        actions:
+          '0':
+            type: rcconversations.conversation.start
+            args:
+              host: world.bravaria.kia.heu_lieferung.1-heu-lieferung.pferdeknecht
+              conv: world.bravaria.kia.heu_lieferung.1-heu-lieferung.complete-quest
+      '1':
+        type: rcconversations.conversation.stage
+        args:
+          conv: world.bravaria.kia.heu_lieferung.1-heu-lieferung.complete-quest
+          stage: finished
+    requirements:
+      '0':
+        type: rcconversations.conversation.stage
+        args:
+          conv: world.bravaria.kia.heu_lieferung.1-heu-lieferung.complete-quest
+          stage: finished
+complete-actions:
+  '0':
+    type: rcskills.hero.addxp
+    args:
+      exp: 250
+  '1':
+    type: player.give.money
+    args:
+      amount: 1s50k
+  '2':
+    type: rcconversations.conversation.start
+    args:
+      host: world.bravaria.kia.heu_lieferung.stallbursche
+      conv: world.bravaria.kia.heu_lieferung.end-quest
+  '3':
+    type: rcconversations.conversation.start
+    args:
+      host: world.bravaria.kia.heu_lieferung.1-heu-lieferung.pferdeknecht
+      conv: world.bravaria.kia.heu_lieferung.1-heu-lieferung.pferdeknecht.end-quest
